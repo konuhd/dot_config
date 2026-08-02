@@ -1,0 +1,16 @@
+{
+  "mpvpaperWallpaper": {
+    "enabled": true,
+    "monitorPaths": {
+      "eDP-1": "/home/nero/Pictures/Wallpapers/【哲风壁纸】伊地知虹夏-后藤独.mp4"
+    },
+    "panscanValue": 0.98,
+    "autoPause": false,
+    "noAudio": false,
+    "allMonitors": true,
+    "allMonitorsPath": "/home/nero/Pictures/Wallpapers/【哲风壁纸】伊地知虹夏-后藤独.mp4",
+    "generateStaticWallpaper": true,
+    "screenshotDelay": 28,
+    "periodicRestart": false
+  }
+}

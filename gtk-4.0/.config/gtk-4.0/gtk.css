@@ -1,27 +1,30 @@
 /* Local GTK4 entry point for Materia-dark-trans-compact-wal. */
-@import url("/usr/share/themes/Materia-dark-trans-compact-wal/gtk-4.0/gtk.css");
-@import url("materia-wal-colors.css");
+/* The local copy imports materia-wal-colors.css instead of an ephemeral /tmp file. */
+@import url("materia-theme.css");
 
-/* Nautilus/libadwaita sidebar override. */
-.navigation-sidebar,
-.navigation-sidebar > row,
-stacksidebar.sidebar,
-stacksidebar.sidebar > scrolledwindow,
-stacksidebar.sidebar list,
-.navigation-sidebar junction,
-stacksidebar.sidebar junction {
-  background-color: alpha(@color0, 0.72);
+/* Nautilus 50 sidebar: remove opaque child layers before tinting the pane. */
+window .sidebar-pane,
+window .sidebar-pane > *,
+window .sidebar-pane * {
+  background-color: transparent;
   background-image: none;
   color: @color15;
 }
 
-.navigation-sidebar > row:hover,
-stacksidebar.sidebar row:hover {
+window .sidebar-pane {
+  background-color: alpha(@color0, 0.48);
+}
+
+window .sidebar-pane row.activatable {
+  background-color: transparent;
+  background-image: none;
+}
+
+window .sidebar-pane row.activatable:hover {
   background-color: alpha(@color4, 0.12);
 }
 
-.navigation-sidebar > row:selected,
-stacksidebar.sidebar row:selected {
+window .sidebar-pane row.activatable:selected {
   background-color: alpha(@color4, 0.24);
   color: @color15;
 }

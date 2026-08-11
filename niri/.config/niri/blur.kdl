@@ -70,6 +70,14 @@ window-rule {
         blur true
     }
 }
+window-rule {
+    match app-id="bilibili"
+    opacity 0.85
+    background-effect {
+        xray true
+        blur true
+    }
+}
 // Noctalia 壁纸模糊层。放进 backdrop，使其仅在 overview/空工作区作为模糊背景出现，而不是盖住桌面壁纸。
 layer-rule {
     match namespace="noctalia-backdrop"

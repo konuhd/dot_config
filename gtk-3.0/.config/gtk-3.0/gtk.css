@@ -1,18 +1,20 @@
 @import url("materia-theme.css");
 
-/* Mousepad/GtkSourceView must keep an opaque editor surface for readable text. */
+/* Mousepad/GtkSourceView: semi-transparent frosted glass editor surface.
+   Niri's xray blur handles the actual blurring; we just need the
+   textview background to be partially transparent so the blur shows. */
 textview,
 textview text,
 textview.view,
 .sourceview,
 .sourceview.view {
-  background-color: #101418;
-  color: #e0e2e8;
-  caret-color: #e0e2e8;
+  background-color: alpha(@color0, 0.65);
+  color: @color15;
+  caret-color: @color15;
 }
 
 textview text selection,
 .sourceview.view text selection {
-  background-color: alpha(#42a5f5, 0.35);
-  color: #e0e2e8;
+  background-color: alpha(@color4, 0.35);
+  color: @color15;
 }

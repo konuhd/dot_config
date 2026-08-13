@@ -669,7 +669,7 @@ check, radio {{
   box-shadow: 0 1px 2px alpha({palette["base"]}, 0.42);
 }}
 
-radio {{
+radio, radio:checked, radio:indeterminate, radio:disabled {{
   border-radius: 9999px;
   -gtk-icon-source: none;
   border-image: none;
@@ -697,12 +697,14 @@ check:checked, check:indeterminate {{
 
 radio:checked:not(:indeterminate) {{
   border-color: {palette["iris"]};
+  border-image: none;
   background-color: {palette["iris"]};
   background-image: radial-gradient(circle, {palette["base"]} 0%, {palette["base"]} 34%, transparent 39%);
 }}
 
 radio:indeterminate {{
   border-color: {palette["iris"]};
+  border-image: none;
   background-color: alpha({palette["iris"]}, 0.7);
   background-image: linear-gradient(to right, {palette["base"]} 0%, {palette["base"]} 100%);
   background-size: 8px 2px;

@@ -1,4 +1,5 @@
 @import url("materia-theme.css");
+@import url("morandi-widgets.css");
 
 /* Mousepad/GtkSourceView: semi-transparent frosted glass editor surface.
    Niri's xray blur handles the actual blurring; we just need the

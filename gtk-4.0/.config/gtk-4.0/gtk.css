@@ -1,3 +1,4 @@
+@import url("morandi-widgets.css");
 /* Local GTK4 entry point for Materia-dark-trans-compact-wal. */
 /* The local copy imports materia-wal-colors.css instead of an ephemeral /tmp file. */
 @import url("materia-theme.css");

@@ -18,6 +18,9 @@ FASTFETCH_CONFIG = Path.home() / ".config/fastfetch/config.jsonc"
 ALACRITTY_TOML = Path.home() / ".config/alacritty/alacritty.toml"
 KDE_OUTPUT = Path.home() / ".local/share/color-schemes/Morandi-dark.colors"
 NVIM_MORANDI = Path.home() / ".config/nvim/colors/morandi.lua"
+GTK3_DIR = Path.home() / ".config/gtk-3.0"
+GTK4_DIR = Path.home() / ".config/gtk-4.0"
+GTK_WIDGETS_IMPORT = '@import url("morandi-widgets.css");'
 
 def hex_to_hsl(hex_color):
     r = int(hex_color[1:3], 16) / 255
@@ -650,6 +653,264 @@ def write_nvim(palette):
 
     NVIM_MORANDI.write_text(content)
 
+_MORANDI_ICONS = {
+    "check.svg": (
+        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">'
+        '<path d="M3.4 8.3 6.7 11.6 12.6 4.7" fill="none" stroke="#000" '
+        'stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+    ),
+    "mixed.svg": (
+        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">'
+        '<path d="M3.4 8h9.2" fill="none" stroke="#000" stroke-width="2.4" '
+        'stroke-linecap="round"/></svg>'
+    ),
+    "dot.svg": (
+        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">'
+        '<circle cx="8" cy="8" r="3.1" fill="#000"/></svg>'
+    ),
+}
+
+# Selection-widget overrides shared by GTK3/GTK4 (colors injected via <TOKEN>)
+_GTK_WIDGETS_COMMON = """
+/* --- Reset Materia's 24px circular hit-area --- */
+checkbutton check,
+checkbutton check:hover,
+checkbutton check:active,
+radiobutton radio,
+radiobutton radio:hover,
+radiobutton radio:active {
+  margin: 0;
+  padding: 0;
+  min-height: 20px;
+  min-width: 20px;
+  background-image: none;
+  box-shadow: none;
+  transition: 120ms ease;
+}
+
+/* --- Checkbox --- */
+check {
+  border-radius: 6px;
+  border: 1px solid alpha(<OVERLAY0>, 0.55);
+  background-color: alpha(<SURFACE1>, 0.5);
+  -gtk-icon-source: none;
+}
+check:hover {
+  border-color: alpha(<IRIS>, 0.65);
+  background-color: alpha(<IRIS>, 0.14);
+}
+check:checked,
+check:indeterminate {
+  border-color: <IRIS>;
+  background-color: <IRIS>;
+  color: <BASE>;
+  -gtk-icon-source: -gtk-recolor(url("morandi-icons/check.svg"));
+}
+check:indeterminate {
+  -gtk-icon-source: -gtk-recolor(url("morandi-icons/mixed.svg"));
+}
+check:checked:hover,
+check:indeterminate:hover,
+check:checked:active,
+check:indeterminate:active {
+  border-color: <IRIS_BRIGHT>;
+  background-color: <IRIS_BRIGHT>;
+}
+check:focus {
+  box-shadow: 0 0 0 2px alpha(<IRIS>, 0.35);
+}
+check:disabled {
+  border-color: alpha(<OVERLAY0>, 0.28);
+  background-color: alpha(<SURFACE1>, 0.28);
+}
+check:checked:disabled,
+check:indeterminate:disabled {
+  border-color: alpha(<IRIS>, 0.32);
+  background-color: alpha(<IRIS>, 0.32);
+  color: alpha(<BASE>, 0.45);
+}
+
+/* --- Radio --- */
+radio {
+  border-radius: 9999px;
+  border: 1px solid alpha(<OVERLAY0>, 0.55);
+  background-color: alpha(<SURFACE1>, 0.5);
+  -gtk-icon-source: none;
+}
+radio:hover {
+  border-color: alpha(<IRIS>, 0.65);
+  background-color: alpha(<IRIS>, 0.14);
+}
+radio:checked {
+  border-color: <IRIS>;
+  background-color: <IRIS>;
+  color: <BASE>;
+  -gtk-icon-source: -gtk-recolor(url("morandi-icons/dot.svg"));
+}
+radio:checked:hover,
+radio:checked:active {
+  border-color: <IRIS_BRIGHT>;
+  background-color: <IRIS_BRIGHT>;
+}
+radio:focus {
+  box-shadow: 0 0 0 2px alpha(<IRIS>, 0.35);
+}
+radio:disabled {
+  border-color: alpha(<OVERLAY0>, 0.28);
+  background-color: alpha(<SURFACE1>, 0.28);
+}
+radio:checked:disabled {
+  border-color: alpha(<IRIS>, 0.32);
+  background-color: alpha(<IRIS>, 0.32);
+  color: alpha(<BASE>, 0.45);
+}
+"""
+
+_GTK3_WIDGETS_CSS = _GTK_WIDGETS_COMMON + """
+/* --- Small variants inside menus (GTK3/GTK4, identical styling) --- */
+menu menuitem check,
+menu menuitem radio,
+menu menuitem check:hover,
+menu menuitem check:active,
+menu menuitem radio:hover,
+menu menuitem radio:active,
+popover modelbutton.flat check,
+popover modelbutton.flat radio,
+popover modelbutton.flat check:hover,
+popover modelbutton.flat check:active,
+popover modelbutton.flat radio:hover,
+popover modelbutton.flat radio:active,
+popover.menu check,
+popover.menu radio,
+popover.menu check:hover,
+popover.menu check:active,
+popover.menu radio:hover,
+popover.menu radio:active {
+  min-height: 16px;
+  min-width: 16px;
+  margin: 0;
+  padding: 0;
+  border-radius: 4px;
+  border: 1px solid alpha(<OVERLAY0>, 0.4);
+  background-color: transparent;
+  background-image: none;
+  box-shadow: none;
+}
+menu menuitem radio,
+menu menuitem radio:hover,
+menu menuitem radio:active,
+popover modelbutton.flat radio,
+popover modelbutton.flat radio:hover,
+popover modelbutton.flat radio:active,
+popover.menu radio,
+popover.menu radio:hover,
+popover.menu radio:active {
+  border-radius: 9999px;
+}
+menu menuitem check:checked,
+menu menuitem check:indeterminate,
+menu menuitem radio:checked,
+popover modelbutton.flat check:checked,
+popover modelbutton.flat check:indeterminate,
+popover modelbutton.flat radio:checked,
+popover.menu check:checked,
+popover.menu check:indeterminate,
+popover.menu radio:checked {
+  border-color: <IRIS>;
+  background-color: <IRIS>;
+  color: <BASE>;
+}
+menu menuitem check:checked:hover,
+menu menuitem check:indeterminate:hover,
+menu menuitem radio:checked:hover,
+popover modelbutton.flat check:checked:hover,
+popover modelbutton.flat check:indeterminate:hover,
+popover modelbutton.flat radio:checked:hover,
+popover.menu check:checked:hover,
+popover.menu check:indeterminate:hover,
+popover.menu radio:checked:hover {
+  border-color: <IRIS_BRIGHT>;
+  background-color: <IRIS_BRIGHT>;
+}
+
+/* --- Menu/popover row hover highlight --- */
+menu menuitem:hover,
+menu menuitem:focus,
+.context-menu menuitem:hover,
+popover modelbutton.flat:hover,
+popover.menu modelbutton:hover {
+  background-color: alpha(<IRIS>, 0.16);
+}
+
+/* --- Text selection --- */
+textview text selection,
+textview text selection:focus,
+textview > text > selection,
+textview > text > selection:focus,
+entry selection,
+entry selection:focus,
+entry > text > selection,
+entry > text > selection:focus,
+label selection,
+label selection:focus,
+label > selection,
+label > selection:focus,
+.view selection,
+.view selection:focus,
+spinbutton:not(.vertical) selection,
+spinbutton:not(.vertical) > text > selection {
+  background-color: alpha(<IRIS>, 0.35);
+}
+"""
+
+_GTK4_WIDGETS_CSS = _GTK3_WIDGETS_CSS
+
+def write_gtk(palette):
+    """Inject Morandi styling for GTK3/GTK4 selection widgets via user-level CSS."""
+    ih, is_, il = hex_to_hsl(palette["iris"])
+    iris_bright = hsl_to_hex(ih, min(is_ + 10, 100), min(il + 7, 100))
+
+    colors = {
+        "<IRIS>": palette["iris"],
+        "<IRIS_BRIGHT>": iris_bright,
+        "<BASE>": palette["base"],
+        "<SURFACE1>": palette["surface1"],
+        "<OVERLAY0>": palette["overlay0"],
+    }
+
+    css3, css4 = _GTK3_WIDGETS_CSS, _GTK4_WIDGETS_CSS
+    for token, color in colors.items():
+        css3 = css3.replace(token, color)
+        css4 = css4.replace(token, color)
+    css3 = "/* Auto-generated by morandi-gen.py - Morandi selection widgets (GTK3) */\n" + css3
+    css4 = "/* Auto-generated by morandi-gen.py - Morandi selection widgets (GTK4) */\n" + css4
+
+    for gtk_dir in (GTK3_DIR, GTK4_DIR):
+        icon_dir = gtk_dir / "morandi-icons"
+        icon_dir.mkdir(parents=True, exist_ok=True)
+        for name, svg in _MORANDI_ICONS.items():
+            (icon_dir / name).write_text(svg)
+
+    (GTK3_DIR / "morandi-widgets.css").write_text(css3)
+    (GTK4_DIR / "morandi-widgets.css").write_text(css4)
+
+    for css_path in (GTK3_DIR / "gtk.css", GTK4_DIR / "gtk.css"):
+        if not css_path.exists():
+            css_path.write_text(GTK_WIDGETS_IMPORT + "\n")
+            continue
+        content = css_path.read_text()
+        if GTK_WIDGETS_IMPORT.strip() in content:
+            continue
+        lines = content.splitlines()
+        insert_at = 0
+        for i, line in enumerate(lines):
+            if line.strip().startswith("@import"):
+                insert_at = i + 1
+            else:
+                break
+        lines.insert(insert_at, GTK_WIDGETS_IMPORT.strip())
+        css_path.write_text("\n".join(lines) + "\n")
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--wallpaper", help="Path to current wallpaper for limine sync")
@@ -672,6 +933,7 @@ def main():
     write_clash_verge(palette)
     write_flclash(palette)
     write_nvim(palette)
+    write_gtk(palette)
     
     try:
         write_cava(palette)

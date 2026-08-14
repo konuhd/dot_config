@@ -3,9 +3,7 @@
   "logo": {
     "type": "file",
     "source": "~/.config/fastfetch/ascii/anime.txt",
-    "color": {
-      "1": "#FFB6C1"
-    },
+    "color": { "keys": "#afac9c", "title": "#f2f2f2" },
     "padding": {
       "top": 1,
       "left": 2,
@@ -14,11 +12,7 @@
   },
   "display": {
     "separator": " ", // Separator between keys and values
-    "color": {
-      //"keys": "#8ab4f8", // Key color module名字的颜色
-      "title": "#c2c7cf", // Title color 主机名的颜色
-      "output": "#c2c7cf"
-    },
+    "color": { "keys": "#afac9c", "title": "#f2f2f2" },
   },
   "modules": [
     "break",

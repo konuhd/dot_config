@@ -15,7 +15,8 @@ binds {
     // 临时开一个浮动终端
     Mod+Slash hotkey-overlay-title="临时终端 Quick Terminal" {spawn "kitty" "--single-instance" "--class" "quickterminal";}
     //打开浏览器
-    Mod+B hotkey-overlay-title="浏览器 Browser" { spawn "firefox"; }
+    // Firefox 原生 Wayland 输入法不要加载 GTK_IM_MODULE，候选词交给 Fcitx5 Wayland 前端
+    Mod+B hotkey-overlay-title="浏览器 Browser" { spawn "env" "-u" "GTK_IM_MODULE" "firefox"; }
     //opencode ai助手
     Mod+Alt+O hotkey-overlay-title="AI助手 opencode agent" { spawn "kitty" "--class" "opencode" "-e" "opencode"; }
 

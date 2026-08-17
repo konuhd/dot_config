@@ -13,7 +13,7 @@ order = [ "default" ]
     capsule = true
     capsule_opacity = 0.68999998457729816
     capsule_thickness = 0.67999998852610588
-    center = [ "clock", "date", "weather", "toggle" ]
+    center = [ "clock", "date", "weather", "toggle", "notes" ]
     contact_shadow = true
     end = [ "media", "tray", "notifications", "clipboard", "network", "bluetooth", "battery", "session" ]
     font_family = "JetBrainsMono NF"
@@ -127,7 +127,7 @@ password = "12345678"
 panel_placement = "floating"
 
 [plugins]
-enabled = [ "noctalia/screen_recorder" ]
+enabled = [ "noctalia/screen_recorder", "noctalia/notes" ]
 
     [[plugins.source]]
     kind = "git"
@@ -175,11 +175,22 @@ path = "/home/nero/Pictures/Wallpapers/【哲风壁纸】休闲装-动漫人物.
 theme_mode = "light"
 wallpaper_scheme = "m3-content"
 
+[[wallpaper.favorite]]
+path = "/home/nero/Pictures/Wallpapers/0F94F7CA7609B724ABAE87D68CD0A698.png"
+theme_mode = "auto"
+
+[[wallpaper.favorite]]
+path = "/home/nero/Pictures/Wallpapers/girl.jpg"
+theme_mode = "auto"
+
 [widget.date]
 capsule = true
 
 [widget.media]
 hide_when_no_media = true
+
+[widget.notes]
+type = "noctalia/notes:notes"
 
 [widget.toggle]
 type = "cleboost/hotspot:toggle"

@@ -37,3 +37,124 @@ window .sidebar-pane row.activatable:selected {
   background-color: transparent;
   background-image: none;
 }
+
+/* Nautilus/GTK4 right-click menus: also make them frosted glass instead of
+   the opaque #2e2e2e from materia-theme.css. */
+popover.background,
+popover.background > contents,
+popover.background > arrow,
+popover > contents,
+popover > arrow {
+  background-color: alpha(@color0, 0.35);
+  background-clip: padding-box;
+}
+
+/* The popup surface is sized to include the box-shadow extents, which makes
+   Niri blur a wide frosted halo around the menu. Remove the shadow so the
+   surface hugs the menu content instead. */
+popover > contents,
+popover > arrow,
+popover.background > contents,
+popover.background > arrow {
+  box-shadow: none;
+}
+
+/* Don't let the menu internals paint an opaque background on top. */
+popover.menu > contents,
+popover.menu > contents listview,
+popover.menu modelbutton {
+  background-color: transparent;
+  background-image: none;
+}
+
+/* Shrink the context menu's outer horizontal padding so it hugs the text
+   instead of leaving wide empty gutters on both sides. */
+popover > contents,
+popover.background > contents {
+  padding: 0;
+  min-width: 0;
+}
+
+popover.menu {
+  min-width: 0;
+}
+
+popover.menu > contents {
+  padding: 0;
+}
+
+popover.menu modelbutton {
+  min-width: 0;
+  padding: 1px 2px;
+}
+
+popover.menu label.title {
+  padding: 1px 2px;
+}
+
+/* Fallbacks in case Nautilus's context popover doesn't carry the .menu class. */
+popover modelbutton {
+  min-width: 0;
+  padding: 1px 2px;
+}
+
+popover label.title {
+  padding: 1px 2px;
+}
+
+/* Tighten the gap before accelerators so the menu doesn't stretch as wide. */
+popover.menu modelbutton accelerator {
+  margin-left: 6px;
+  margin-right: 0;
+}
+
+popover modelbutton accelerator {
+  margin-left: 6px;
+  margin-right: 0;
+}
+
+popover modelbutton accelerator:dir(ltr) {
+  margin-left: 6px;
+  margin-right: 0;
+}
+
+popover modelbutton accelerator:dir(rtl) {
+  margin-left: 0;
+  margin-right: 6px;
+}
+
+popover.menu modelbutton accelerator:dir(ltr) {
+  margin-left: 6px;
+  margin-right: 0;
+}
+
+popover.menu modelbutton accelerator:dir(rtl) {
+  margin-left: 0;
+  margin-right: 6px;
+}
+
+/* Keep check/radio/arrow alignment after reducing modelbutton padding. */
+popover.menu arrow.left,
+popover.menu check.left,
+popover.menu radio.left {
+  margin-left: -1px;
+  margin-right: 4px;
+}
+
+popover.menu arrow.right,
+popover.menu check.right,
+popover.menu radio.right {
+  margin-left: 4px;
+  margin-right: -1px;
+}
+
+/* Make file hover more obvious while staying visually distinct from the
+   blue selection highlight. */
+gridview > child:hover:not(:selected),
+listview > row:hover:not(:selected),
+row.activatable:hover:not(:selected),
+flowbox > flowboxchild:hover:not(:selected),
+.view > .cell:hover:not(:selected) {
+  background-color: rgba(255, 255, 255, 0.14);
+  background-image: none;
+}

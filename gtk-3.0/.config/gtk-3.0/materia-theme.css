@@ -2450,19 +2450,19 @@ scrollbar slider {
   border: 4px solid transparent;
   border-radius: 9999px;
   background-clip: padding-box;
-  background-color: alpha(@color7, 0.38);
+  background-color: alpha(#90caf9, 0.38);
 }
 
 scrollbar slider:hover {
-  background-color: alpha(@color7, 0.48);
+  background-color: alpha(#90caf9, 0.48);
 }
 
 scrollbar slider:active {
-  background-color: alpha(@color7, 0.6);
+  background-color: alpha(#90caf9, 0.6);
 }
 
 scrollbar slider:disabled {
-  background-color: alpha(@color7, 0.26);
+  background-color: alpha(#90caf9, 0.26);
 }
 
 scrollbar.fine-tune slider {
@@ -2500,13 +2500,13 @@ scrollbar.overlay-indicator:not(.dragging):not(.hovering) button {
   margin: 3px;
   border: 1px solid rgba(30, 30, 30, 0.3);
   border-radius: 9999px;
-  background-color: alpha(@color7, 0.38);
+  background-color: alpha(#90caf9, 0.38);
   background-clip: padding-box;
   -gtk-icon-source: none;
 }
 
 scrollbar.overlay-indicator:not(.dragging):not(.hovering) button:disabled {
-  background-color: alpha(@color7, 0.26);
+  background-color: alpha(#90caf9, 0.26);
 }
 
 scrollbar.overlay-indicator:not(.dragging):not(.hovering).horizontal slider {
@@ -2527,7 +2527,7 @@ scrollbar.overlay-indicator:not(.dragging):not(.hovering).vertical button {
 
 scrollbar.overlay-indicator.dragging, scrollbar.overlay-indicator.hovering {
   /* background-color: #2e2e2e; */
-  background-color: alpha(@color7, 0.1);
+  background-color: alpha(#90caf9, 0.1);
 }
 
 scrollbar.horizontal slider {

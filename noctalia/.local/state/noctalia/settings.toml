@@ -1,4 +1,4 @@
-config_version = 12
+config_version = 13
 
 [backdrop]
 enabled = true
@@ -13,7 +13,7 @@ order = [ "default" ]
     capsule = true
     capsule_opacity = 0.68999998457729816
     capsule_thickness = 0.67999998852610588
-    center = [ "clock", "date", "weather", "toggle", "notes" ]
+    center = [ "clock", "date", "weather", "notes" ]
     contact_shadow = true
     end = [ "media", "tray", "notifications", "clipboard", "network", "bluetooth", "battery", "session" ]
     font_family = "JetBrainsMono NF"
@@ -58,11 +58,13 @@ widget_order = [
     visible = true
 
     [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
-    box_height = 70.0
-    box_width = 400.0
+    box_height = 196.0
+    box_width = 720.0
     cx = 823.0
     cy = 613.5
     output = "eDP-1"
+    placement_height = 1029.0
+    placement_width = 1646.0
     rotation = 0.0
     type = "login_box"
 
@@ -73,16 +75,23 @@ widget_order = [
         center_password_text = false
         input_opacity = 1.0
         input_radius = 6.0
+        layout = "regular"
         show_caps_lock = true
         show_keyboard_layout = true
         show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
 
     [lockscreen_widgets.widget."lockscreen-login-box@winit"]
-    box_height = 70.0
-    box_width = 400.0
+    box_height = 196.0
+    box_width = 720.0
     cx = 654.0
     cy = 1435.0
     output = "winit"
+    placement_height = 0.0
+    placement_width = 0.0
     rotation = 0.0
     type = "login_box"
 
@@ -93,9 +102,14 @@ widget_order = [
         center_password_text = false
         input_opacity = 1.0
         input_radius = 6.0
+        layout = "regular"
         show_caps_lock = true
         show_keyboard_layout = true
         show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
 
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000001]
     box_height = 128.0
@@ -103,6 +117,8 @@ widget_order = [
     cx = 743.0
     cy = 306.5
     output = "eDP-1"
+    placement_height = 1029.0
+    placement_width = 1646.0
     rotation = 0.0
     type = "clock"
 
@@ -112,6 +128,8 @@ widget_order = [
     cx = 1047.0
     cy = 306.5
     output = "eDP-1"
+    placement_height = 1029.0
+    placement_width = 1646.0
     rotation = 0.0
     type = "sysmon"
 
@@ -127,7 +145,8 @@ password = "12345678"
 panel_placement = "floating"
 
 [plugins]
-enabled = [ "noctalia/screen_recorder", "noctalia/notes" ]
+auto_update = "all"
+enabled = [ "noctalia/screen_recorder", "noctalia/notes", "raycursive/niri-displays" ]
 
     [[plugins.source]]
     kind = "git"
@@ -191,6 +210,3 @@ hide_when_no_media = true
 
 [widget.notes]
 type = "noctalia/notes:notes"
-
-[widget.toggle]
-type = "cleboost/hotspot:toggle"

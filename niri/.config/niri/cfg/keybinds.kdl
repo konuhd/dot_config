@@ -56,7 +56,7 @@ binds {
     Mod+Alt+R hotkey-overlay-title="重置侧边栏 Reorder Sidebar"  { spawn "niri-sidebar" "reorder"; }
 
     // 以下功能需要安装nirius并启动niriusd
-    //Mod+Ctrl+G hotkey-overlay-title="在切换工作区时自动跟随 Follow when switch workspaces" {spawn "nirius" "toggle-follow-mode" ;}
+    Mod+Ctrl+G hotkey-overlay-title="在切换工作区时自动跟随 Follow when switch workspaces" {spawn "nirius" "toggle-follow-mode" ;}
     //Mod+Shift+Q hotkey-overlay-title="快速聚焦到QQ Quick focus QQ" {spawn "nirius" "focus" "--app-id" "QQ" ;}
     //Mod+Shift+W hotkey-overlay-title="快速聚焦到微信 Quick focus Wechat" {spawn "nirius" "focus" "--app-id" "wechat" ;}
 

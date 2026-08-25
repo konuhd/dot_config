@@ -110,6 +110,8 @@ spawn-at-startup "xhost" "+si:localuser:root"
 spawn-at-startup "dsearch" "serve"
 // x11<--> 剪贴板同步
 spawn-at-startup "systemctl" "--user" "start" "linuxqq-clipsync"
+// nirius 守护进程（工作区跟随、快速聚焦等）
+spawn-at-startup "niriusd"
 
 // 取消启动niri时自动开启快捷键教程
 spawn-at-startup "sh" "-c" "dpi=$(awk \"BEGIN {print (${GDK_SCALE:-2}) * 96}\"); echo \"Xft.dpi: $dpi\" | xrdb -merge"

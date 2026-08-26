@@ -175,18 +175,18 @@ polkit_agent = true
 
 [theme]
 builtin = "Noctalia"
-mode = "auto"
+mode = "light"
 source = "wallpaper"
 wallpaper_scheme = "m3-content"
 
 [wallpaper.default]
-path = "/home/nero/Pictures/Wallpapers/0F94F7CA7609B724ABAE87D68CD0A698.png"
+path = "/home/nero/Pictures/Wallpapers/【哲风壁纸】休闲装-动漫人物.png"
 
 [wallpaper.last]
-path = "/home/nero/Pictures/Wallpapers/0F94F7CA7609B724ABAE87D68CD0A698.png"
+path = "/home/nero/Pictures/Wallpapers/【哲风壁纸】休闲装-动漫人物.png"
 
 [wallpaper.monitors.eDP-1]
-path = "/home/nero/Pictures/Wallpapers/0F94F7CA7609B724ABAE87D68CD0A698.png"
+path = "/home/nero/Pictures/Wallpapers/【哲风壁纸】休闲装-动漫人物.png"
 
 [[wallpaper.favorite]]
 palette_source = "wallpaper"

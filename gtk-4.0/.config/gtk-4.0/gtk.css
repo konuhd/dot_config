@@ -168,3 +168,39 @@ window.nautilus-window statuspage > box,
   background-color: transparent;
   background-image: none;
 }
+
+/* Nautilus selection action bar: Materia leaves this surface undefined,
+   which becomes a solid white strip with Niri transparency/blur. */
+window.nautilus-window placesview > actionbar > revealer > box,
+window.nautilus-window actionbar > revealer > box {
+  background-color: alpha(@color0, 0.92);
+  color: @color15;
+}
+
+window.nautilus-window placesview > actionbar > revealer > box label,
+window.nautilus-window actionbar > revealer > box label,
+window.nautilus-window placesview > actionbar > revealer > box button,
+window.nautilus-window actionbar > revealer > box button {
+  color: @color15;
+}
+
+/* Nautilus 50 floating status bar. The bundled Nautilus CSS uses the
+ * libadwaita --view-bg-color variable, which the Materia GTK4 theme does
+ * not define. That fallback becomes white; its inset shadow also fills
+ * the entire bar. Use an explicit surface and remove the shadow. */
+window.nautilus-window .floating-bar,
+window.nautilus-window .floating-bar:backdrop {
+  background-color: alpha(@color0, 0.92);
+  background-image: none;
+  background-clip: padding-box;
+  box-shadow: none;
+  border: 1px solid alpha(@color7, 0.12);
+  color: @color15;
+}
+
+window.nautilus-window .floating-bar > *,
+window.nautilus-window .floating-bar label,
+window.nautilus-window .floating-bar button,
+window.nautilus-window .floating-bar image {
+  color: @color15;
+}

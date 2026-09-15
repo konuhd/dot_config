@@ -1,4 +1,4 @@
-config_version = 13
+config_version = 14
 
 [backdrop]
 enabled = true
@@ -15,12 +15,23 @@ order = [ "default" ]
     capsule_thickness = 0.67999998852610588
     center = [ "clock", "date", "weather", "notes" ]
     contact_shadow = true
-    end = [ "media", "tray", "notifications", "clipboard", "network", "bluetooth", "battery", "session" ]
+    end = [ "media", "tray", "notifications", "clipboard", "group:g1", "battery", "session" ]
     font_family = "JetBrainsMono NF"
     margin_ends = 20
     padding = 0
     start = [ "launcher", "workspaces", "active_window", "cpu", "ram" ]
     thickness = 40
+
+        [[bar.default.capsule_group]]
+        accordion = true
+        accordion_direction = "end"
+        border = ""
+        enabled = true
+        fill = "on_primary"
+        id = "g1"
+        members = [ "network", "bluetooth", "bar" ]
+        opacity = 0.68999999761581421
+        padding = 7.0
 
 [desktop_widgets]
 schema_version = 2
@@ -60,11 +71,11 @@ widget_order = [
     [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
     box_height = 196.0
     box_width = 720.0
-    cx = 823.0
-    cy = 613.5
+    cx = 800.0
+    cy = 596.21002197265625
     output = "eDP-1"
-    placement_height = 1029.0
-    placement_width = 1646.0
+    placement_height = 1000.0
+    placement_width = 1600.0
     rotation = 0.0
     type = "login_box"
 
@@ -114,22 +125,22 @@ widget_order = [
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000001]
     box_height = 128.0
     box_width = 288.0
-    cx = 743.0
-    cy = 306.5
+    cx = 722.23577880859375
+    cy = 297.86203002929688
     output = "eDP-1"
-    placement_height = 1029.0
-    placement_width = 1646.0
+    placement_height = 1000.0
+    placement_width = 1600.0
     rotation = 0.0
     type = "clock"
 
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000002]
     box_height = 0.0
     box_width = 0.0
-    cx = 1047.0
-    cy = 306.5
+    cx = 1017.7398681640625
+    cy = 297.86203002929688
     output = "eDP-1"
-    placement_height = 1029.0
-    placement_width = 1646.0
+    placement_height = 1000.0
+    placement_width = 1600.0
     rotation = 0.0
     type = "sysmon"
 
@@ -175,32 +186,40 @@ polkit_agent = true
 
 [theme]
 builtin = "Noctalia"
+community_palette = "Oxocarbon"
 mode = "light"
 source = "wallpaper"
 wallpaper_scheme = "m3-content"
 
-[wallpaper.default]
-path = "/home/nero/Pictures/Wallpapers/【哲风壁纸】休闲装-动漫人物.png"
+[wallpaper]
+directory = "/home/nero/Pictures/Wallpapers"
 
-[wallpaper.last]
-path = "/home/nero/Pictures/Wallpapers/【哲风壁纸】休闲装-动漫人物.png"
+    [wallpaper.default]
+    path = "/home/nero/Pictures/Wallpapers/【哲风壁纸】休闲装-动漫人物.png"
 
-[wallpaper.monitors.eDP-1]
-path = "/home/nero/Pictures/Wallpapers/【哲风壁纸】休闲装-动漫人物.png"
+    [wallpaper.last]
+    path = "/home/nero/Pictures/Wallpapers/【哲风壁纸】休闲装-动漫人物.png"
 
-[[wallpaper.favorite]]
-palette_source = "wallpaper"
-path = "/home/nero/Pictures/Wallpapers/【哲风壁纸】休闲装-动漫人物.png"
-theme_mode = "light"
-wallpaper_scheme = "m3-content"
+    [wallpaper.monitors.eDP-1]
+    path = "/home/nero/Pictures/Wallpapers/【哲风壁纸】休闲装-动漫人物.png"
 
-[[wallpaper.favorite]]
-path = "/home/nero/Pictures/Wallpapers/0F94F7CA7609B724ABAE87D68CD0A698.png"
-theme_mode = "auto"
+    [[wallpaper.favorite]]
+    palette_source = "wallpaper"
+    path = "/home/nero/Pictures/Wallpapers/【哲风壁纸】休闲装-动漫人物.png"
+    theme_mode = "light"
+    wallpaper_scheme = "m3-content"
 
-[[wallpaper.favorite]]
-path = "/home/nero/Pictures/Wallpapers/girl.jpg"
-theme_mode = "auto"
+    [[wallpaper.favorite]]
+    path = "/home/nero/Pictures/Wallpapers/0F94F7CA7609B724ABAE87D68CD0A698.png"
+    theme_mode = "auto"
+
+    [[wallpaper.favorite]]
+    path = "/home/nero/Pictures/Wallpapers/girl.jpg"
+    theme_mode = "auto"
+
+[widget.bar]
+show_resolution = false
+type = "raycursive/niri-displays:bar"
 
 [widget.date]
 capsule = true

@@ -1,4 +1,4 @@
-config_version = 14
+config_version = 15
 
 [backdrop]
 enabled = true
@@ -15,7 +15,7 @@ order = [ "default" ]
     capsule_thickness = 0.67999998852610588
     center = [ "clock", "date", "weather", "notes" ]
     contact_shadow = true
-    end = [ "media", "tray", "notifications", "clipboard", "group:g1", "battery", "session" ]
+    end = [ "media", "tray", "notifications", "clipboard", "group:g1", "battery", "session", "widget" ]
     font_family = "JetBrainsMono NF"
     margin_ends = 20
     padding = 0
@@ -35,14 +35,29 @@ order = [ "default" ]
 
 [desktop_widgets]
 schema_version = 2
-widget_order = []
+widget_order = [ "desktop-widget-0000000000000001" ]
 
     [desktop_widgets.grid]
-    cell_size = 16
+    cell_size = 8
     major_interval = 4
     visible = true
 
-    [desktop_widgets.widget]
+    [desktop_widgets.widget.desktop-widget-0000000000000001]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 1519.0
+    cy = 1002.5
+    output = "eDP-1"
+    placement_height = 1029.0
+    placement_width = 1646.0
+    rotation = -0.0
+    type = "tranzem/media-lyrics:desktop"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000001.settings]
+        background = false
+        background_opacity = 0.0
+        background_padding = 0.0
+        width = 240
 
 [dock]
 active_monitor_only = true
@@ -71,11 +86,11 @@ widget_order = [
     [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
     box_height = 196.0
     box_width = 720.0
-    cx = 800.0
-    cy = 596.21002197265625
+    cx = 822.99993896484375
+    cy = 613.5001220703125
     output = "eDP-1"
-    placement_height = 1000.0
-    placement_width = 1600.0
+    placement_height = 1029.0
+    placement_width = 1646.0
     rotation = 0.0
     type = "login_box"
 
@@ -125,22 +140,22 @@ widget_order = [
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000001]
     box_height = 128.0
     box_width = 288.0
-    cx = 722.23577880859375
-    cy = 297.86203002929688
+    cx = 743.0
+    cy = 306.50003051757812
     output = "eDP-1"
-    placement_height = 1000.0
-    placement_width = 1600.0
+    placement_height = 1029.0
+    placement_width = 1646.0
     rotation = 0.0
     type = "clock"
 
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000002]
     box_height = 0.0
     box_width = 0.0
-    cx = 1017.7398681640625
-    cy = 297.86203002929688
+    cx = 1046.9998779296875
+    cy = 306.50003051757812
     output = "eDP-1"
-    placement_height = 1000.0
-    placement_width = 1600.0
+    placement_height = 1029.0
+    placement_width = 1646.0
     rotation = 0.0
     type = "sysmon"
 
@@ -155,9 +170,12 @@ password = "12345678"
 [plugin_settings."dotnetrob/cat"]
 panel_placement = "floating"
 
+[plugin_settings."tranzem/media-lyrics"]
+panel_size = "mini"
+
 [plugins]
 auto_update = "all"
-enabled = [ "noctalia/screen_recorder", "noctalia/notes", "raycursive/niri-displays" ]
+enabled = [ "noctalia/screen_recorder", "noctalia/notes", "raycursive/niri-displays", "tranzem/media-lyrics" ]
 
     [[plugins.source]]
     kind = "git"
@@ -176,6 +194,10 @@ launch_apps_as_systemd_services = true
 panel_anchor_bar = "default"
 password_style = "random"
 polkit_agent = true
+
+    [shell.launcher]
+    default_view = "categories"
+    search_position = "top"
 
     [shell.panel]
     control_center_placement = "floating"
@@ -229,3 +251,6 @@ hide_when_no_media = true
 
 [widget.notes]
 type = "noctalia/notes:notes"
+
+[widget.widget]
+type = "conqazht/share-wifi:widget"

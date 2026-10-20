@@ -47,7 +47,7 @@ window-rule {
     }
 }
 window-rule {
-    match app-id="code"
+    match app-id="com.microsoft.VSCodeInsiders"
     opacity 0.80
     background-effect {
         xray true

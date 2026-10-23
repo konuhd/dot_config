@@ -42,6 +42,7 @@ animations {
     window-close {
         // 动画时长
         duration-ms 570
+        curve "linear"
 
         custom-shader r"
             float hash21(vec2 p) {

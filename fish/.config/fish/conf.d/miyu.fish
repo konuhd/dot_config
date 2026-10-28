@@ -1,4 +1,4 @@
-# miyu shell hook · v0.7.0 · 8f74113d
+# miyu shell hook · v0.7.4 · 1e0f9fd5
 # 由 Miyu 生成，勿手改；重装 miyu fish-init
 
 # PATH 上没有 miyu 时去常见安装目录里找(Homebrew、~/.local、cargo)。
@@ -96,7 +96,8 @@ function __miyu_replay_buffer
 end
 
 function __miyu_restore_cursor
-    printf '\e[?25h'
+    # 交给 AI 时开的同步输出:出错、被打断也要关上,不然认它的终端会一直等。
+    printf '\e[?2026l\e[?25h'
     set -e __miyu_cursor_hidden
 end
 
@@ -110,6 +111,8 @@ function __miyu_on_prompt --on-event fish_prompt
     trap __miyu_restore_cursor INT TERM EXIT
     __miyu_replay_buffer "$buffer"
     printf '\n'
+    # 清空输入行、红字重放都画完了:一次交给终端(开头在 __miyu_hand_to_ai)。
+    printf '\e[?2026l'
     printf '%s' "$buffer" | miyu --shell-intercept --shell fish --stdin
     set -l miyu_status $status
     trap - INT TERM EXIT
@@ -180,8 +183,10 @@ function __miyu_hand_to_ai
     set -g __miyu_cursor_hidden 1
     history append -- "$argv[1]"
     set -g __miyu_pending_buffer "$argv[1]"
+    # 同步输出:fish 清空输入行会先擦掉长文,再由 __miyu_on_prompt 红字重放,中间那一下就是闪。
+    # 从这里起终端先不画,重放完一起画。
+    printf '\e[?2026h\e[?25l'
     commandline -b -- ""
-    printf '\e[?25l'
     commandline -f execute
 end
 

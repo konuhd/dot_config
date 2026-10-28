@@ -1,21 +1,2 @@
-@import url("materia-theme.css");
-@import url("morandi-widgets.css");
-
-/* Mousepad/GtkSourceView: semi-transparent frosted glass editor surface.
-   Niri's xray blur handles the actual blurring; we just need the
-   textview background to be partially transparent so the blur shows. */
-textview,
-textview text,
-textview.view,
-.sourceview,
-.sourceview.view {
-  background-color: alpha(@color0, 0.65);
-  color: @color15;
-  caret-color: @color15;
-}
-
-textview text selection,
-.sourceview.view text selection {
-  background-color: alpha(@color4, 0.35);
-  color: @color15;
-}
+/* WhiteSur-Light provides the base theme through settings.ini/GSettings. */
+@import url("whitesur-morandi.css");

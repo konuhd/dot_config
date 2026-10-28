@@ -5,10 +5,7 @@
     "source": "/home/nero/.config/fastfetch/ascii/anime.txt",
     "width": 25,
     // "height":20,
-    "color":{
-      "1":"#42a5f5",
-      "2":"#42a5f5"
-    },
+    "color": { "keys": "#afac9c", "title": "#f2f2f2" },
     "padding": {
       "top": 1, // Top padding
       "left": 2, // Left padding
@@ -17,11 +14,7 @@
   },
   "display": {
     "separator": " ", // Separator between keys and values
-    "color": {
-      //"keys": "#8ab4f8", // Key color module名字的颜色
-      "title": "#c2c7cf", // Title color 主机名的颜色
-      "output": "#c2c7cf"
-    },
+    "color": { "keys": "#afac9c", "title": "#f2f2f2" },
   },
   "modules": [
     "break",
